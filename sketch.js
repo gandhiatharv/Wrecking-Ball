@@ -6,10 +6,13 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13, box14, box15, box16, box17, box18, box19, box20;
 var ball, rope, ground, bg;
+var restart, shot;
 var gameState = "onSling";
 
 function preload(){
     bg = loadImage("w.jpg");
+    restart = loadSound("restart.mp3");
+    shot = loadSound("shot.mp4");
 }
 
 function setup(){
@@ -96,6 +99,7 @@ function mouseDragged(){
 function mouseReleased(){
     rope.fly();
     gameState="launched";
+    shot.play();
 }
 
 function keyPressed(){
@@ -103,6 +107,7 @@ function keyPressed(){
         Matter.Body.setPosition(ball.body, {x:200, y:200});
      rope.attach(ball.body);
 gameState = "onSling";
+restart.play();
     }
 }
   
